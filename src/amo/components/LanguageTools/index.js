@@ -1,3 +1,4 @@
+/* @flow */
 import classNames from 'classnames';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -24,9 +25,9 @@ import type { AddonType } from 'core/types/addons';
 import './styles.scss';
 
 
-type ListItemPropTypes = {|
-  addons: Array<AddonType>,
-|};
+type ListItemPropTypes = {
+  addons?: Array<AddonType>,
+};
 
 const LanguageToolList = ({ addons }: ListItemPropTypes) => {
   return (
@@ -43,7 +44,9 @@ const LanguageToolList = ({ addons }: ListItemPropTypes) => {
 };
 
 type PropTypes = {|
-  addons: Object,
+  addons: {|
+    [addonSlug: string]: AddonType,
+  |},
   dispatch: Function,
   errorHandler: ErrorHandlerType,
   i18n: Object,
@@ -195,7 +198,7 @@ export class LanguageToolsBase extends React.Component {
   }
 }
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state: Object) => {
   return {
     addons: state.addons,
     lang: state.api.lang,
