@@ -29,14 +29,16 @@ type ListItemPropTypes = {
   addons?: Array<AddonType>,
 };
 
-const LanguageToolList = ({ addons }: ListItemPropTypes) => {
+export const LanguageToolList = ({ addons }: ListItemPropTypes) => {
   return (
     <ul className="LanguageTools-addon-list">
       {addons.map((addon) => {
         return (
-          <li key={addon.slug}><Link to={`/addon/${addon.slug}/`}>
-            {addon.name}
-          </Link></li>
+          <li key={addon.slug}>
+            <Link to={`/addon/${addon.slug}/`}>
+              {addon.name}
+            </Link>
+          </li>
         );
       })}
     </ul>
@@ -176,11 +178,11 @@ export class LanguageToolsBase extends React.Component {
                   key={langKey}
                 >
                   <Td lang={langKey}>{languages[langKey].native}</Td>
-                  <Td>
+                  <Td className={`LanguageTools-lang-${langKey}-languagePacks`}>
                     {languagePacks.length ?
                       <LanguageToolList addons={languagePacks} /> : null}
                   </Td>
-                  <Td>
+                  <Td className={`LanguageTools-lang-${langKey}-dictionaries`}>
                     {dictionaries.length ?
                       <LanguageToolList addons={dictionaries} /> : null}
                   </Td>

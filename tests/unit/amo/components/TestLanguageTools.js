@@ -2,6 +2,7 @@ import React from 'react';
 
 import LanguageTools, {
   LanguageToolsBase,
+  LanguageToolList,
 } from 'amo/components/LanguageTools';
 import Link from 'amo/components/Link';
 import { ADDON_TYPE_DICT, ADDON_TYPE_LANG } from 'core/constants';
@@ -122,6 +123,23 @@ describe(__filename, () => {
     expect(root.find('.LanguageTools-lang-fr')).toHaveLength(1);
     expect(root.find('.LanguageTools-lang-ur')).toHaveLength(1);
     expect(root.find('.LanguageTools-lang-zh-TW')).toHaveLength(1);
+  });
+
+  it('renders multiple addons in a list using LanguageToolList', () => {
+    const { store } = dispatchClientMetadata();
+    store.dispatch(loadAddonResults({ addons }));
+    const root = renderShallow({ store });
+
+    const dictionaryList = root
+      .find('.LanguageTools-lang-en-GB-dictionaries')
+      .find(LanguageToolList);
+    const languagePackList = root
+      .find('.LanguageTools-lang-en-GB-languagePacks')
+      .find(LanguageToolList);
+    expect(dictionaryList).toHaveLength(1);
+    expect(languagePackList).toHaveLength(1);
+    expect(dictionaryList.shallow().find('li')).toHaveLength(1);
+    expect(languagePackList.shallow().find('li')).toHaveLength(2);
   });
 
   it('does not render languages we know of but do not have addons for', () => {
