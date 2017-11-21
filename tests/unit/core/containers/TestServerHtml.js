@@ -7,6 +7,7 @@ import {
 } from 'react-addons-test-utils';
 
 import ServerHtml from 'core/containers/ServerHtml';
+import { RTL } from 'core/constants'
 import FakeApp, {
   fakeAssets, fakeSRIData,
 } from 'tests/unit/core/server/fakeApp';
@@ -42,9 +43,9 @@ describe('<ServerHtml />', () => {
 
   it('renders html attrs provided', () => {
     const html = findRenderedDOMComponentWithTag(
-      render({ htmlLang: 'ar', htmlDir: 'rtl' }), 'html');
+      render({ htmlLang: 'ar', htmlDir: RTL }), 'html');
     expect(html.getAttribute('lang')).toEqual('ar');
-    expect(html.getAttribute('dir')).toEqual('rtl');
+    expect(html.getAttribute('dir')).toEqual(RTL);
   });
 
   it('renders meta attrs inside helmet', () => {

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom/server';
 import serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
+import { LTR } from 'core/constants'
 
 
 export default class ServerHtml extends Component {
@@ -21,7 +22,7 @@ export default class ServerHtml extends Component {
   };
 
   static defaultProps = {
-    htmlDir: 'ltr',
+    htmlDir: LTR,
     htmlLang: 'en-US',
     trackingEnabled: false,
   }
