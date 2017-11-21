@@ -237,3 +237,5 @@ export const STATS_VIEW = 'Stats:View';
 export const COLLECTIONS_EDIT = 'Collections:Edit';
 // Super powers. It means absolutely all permissions.
 export const ALL_SUPER_POWERS = '*:*';
+export const RTL = 'rtl';
+export const LTR = 'ltr';
